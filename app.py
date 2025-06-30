@@ -49,7 +49,7 @@ def process_excel(file_path):
         if user_id:
             invite_user(user_id, username)
         
-        time.sleep(1)  
+        time.sleep(5)  
 
 
 
