@@ -11,10 +11,7 @@ HEADERS = {
     "Authorization": f"Bearer " + GITHUB_TOKEN,
     "Accept": "application/vnd.github.v3+json"
 }
-# ============================
 
-
-# Function to get user ID from GitHub username
 def get_user_id(username):
     url = f"https://api.github.com/users/{username}"
     response = requests.get(url, headers=HEADERS)
@@ -26,7 +23,6 @@ def get_user_id(username):
         return None
 
 
-# Function to send invitation to user
 def invite_user(user_id, username):
     url = f"https://api.github.com/orgs/{ORG_NAME}/invitations"
     data = {"invitee_id": user_id}
@@ -40,7 +36,7 @@ def invite_user(user_id, username):
         print(f"❌ Failed to invite {username}: {response.text}")
 
 
-# Read Excel and process invites
+
 def process_excel(file_path):
     df = pd.read_excel(file_path)
     
@@ -53,9 +49,9 @@ def process_excel(file_path):
         if user_id:
             invite_user(user_id, username)
         
-        time.sleep(1)  # Cooldown to avoid API spamming
+        time.sleep(1)  
 
 
-# ========== START ==========
+
 
 process_excel("members.xlsx")
